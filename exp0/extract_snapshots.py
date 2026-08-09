@@ -10,7 +10,6 @@ from pathlib import Path
 
 DATA_DIR = Path("data/libero_spatial")
 OUT_DIR = Path("exp0/snapshots")
-OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 SNAPS_PER_TASK = 10
 NUM_TASKS = 5
@@ -19,7 +18,8 @@ NUM_TASKS = 5
 def extract_from_hdf5(hdf5_path: Path, snap_indices: list) -> list:
     snapshots = []
     with h5py.File(hdf5_path, "r") as f:
-        instruction = str(f.attrs.get("problem_info", b"pick and place task"))
+        raw = f.attrs.get("problem_info", b"pick and place task")
+        instruction = raw.decode() if isinstance(raw, bytes) else str(raw)
         demo = f["data/demo_0"]
         agentview = demo["obs/agentview_rgb"][:]           # (T, 128, 128, 3)
         wrist = demo["obs/robot0_eye_in_hand_image"][:]    # (T, 128, 128, 3)
@@ -41,6 +41,7 @@ def extract_from_hdf5(hdf5_path: Path, snap_indices: list) -> list:
 
 
 def main():
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
     hdf5_files = sorted(DATA_DIR.glob("*.hdf5"))[:NUM_TASKS]
     if not hdf5_files:
         print(f"ERROR: No HDF5 files found in {DATA_DIR}. Run setup/setup.sh first.")
