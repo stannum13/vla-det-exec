@@ -1,0 +1,9 @@
+third_party/
+data/
+checkpoints/
+exp0/results/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+*.so
