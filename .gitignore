@@ -7,3 +7,4 @@ exp0/results/
 .pytest_cache/
 *.egg-info/
 *.so
+.worktrees/
