@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="pipeline-title pipeline-desc">
+  <title id="pipeline-title">Deterministic VLA execution experiment pipeline</title>
+  <desc id="pipeline-desc">A fixed robot observation and versioned preprocessing feed three policy families. Each policy runs one hundred times in stochastic and deterministic modes, producing agreement, drift, entropy, latency, and deadline metrics. This is a design diagram, not a measured result.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#4f6f9f"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-20%" width="120%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#0f172a" flood-opacity=".12"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="360" rx="24" fill="#f7f8fa"/>
+  <text x="54" y="52" font-family="Inter, ui-sans-serif, system-ui" font-size="26" font-weight="700" fill="#182230">Experiment 0 · repeated inference on identical inputs</text>
+  <text x="54" y="80" font-family="Inter, ui-sans-serif, system-ui" font-size="15" fill="#5b6675">The benchmark isolates software-side variation before simulator or physical rollout.</text>
+
+  <g filter="url(#shadow)" font-family="Inter, ui-sans-serif, system-ui">
+    <rect x="45" y="116" width="190" height="116" rx="15" fill="#ffffff" stroke="#c8d2df"/>
+    <text x="140" y="151" text-anchor="middle" font-size="17" font-weight="700" fill="#182230">Fixed observation</text>
+    <text x="140" y="179" text-anchor="middle" font-size="14" fill="#5b6675">RGB · proprioception</text>
+    <text x="140" y="202" text-anchor="middle" font-size="14" fill="#5b6675">instruction · metadata</text>
+
+    <rect x="270" y="116" width="190" height="116" rx="15" fill="#edf4ff" stroke="#88a8d4"/>
+    <text x="365" y="151" text-anchor="middle" font-size="17" font-weight="700" fill="#213a5c">Versioned input</text>
+    <text x="365" y="179" text-anchor="middle" font-size="14" fill="#49627e">preprocessing</text>
+    <text x="365" y="202" text-anchor="middle" font-size="14" fill="#49627e">normalization · ordering</text>
+
+    <rect x="495" y="104" width="210" height="140" rx="15" fill="#24364b" stroke="#24364b"/>
+    <text x="600" y="139" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">Policy adapters</text>
+    <text x="600" y="169" text-anchor="middle" font-size="14" fill="#dbe7f5">ACT · VQ-BeT · MolmoAct2</text>
+    <line x1="525" y1="186" x2="675" y2="186" stroke="#6383aa"/>
+    <text x="600" y="211" text-anchor="middle" font-size="13" fill="#b9cbe0">stochastic ↔ fixed mode</text>
+
+    <rect x="740" y="116" width="180" height="116" rx="15" fill="#edf4ff" stroke="#88a8d4"/>
+    <text x="830" y="151" text-anchor="middle" font-size="17" font-weight="700" fill="#213a5c">Repeated calls</text>
+    <text x="830" y="182" text-anchor="middle" font-size="26" font-weight="800" fill="#315f99">×100</text>
+    <text x="830" y="205" text-anchor="middle" font-size="13" fill="#49627e">per stored observation</text>
+
+    <rect x="955" y="104" width="200" height="140" rx="15" fill="#ffffff" stroke="#c8d2df"/>
+    <text x="1055" y="139" text-anchor="middle" font-size="17" font-weight="700" fill="#182230">Measured outputs</text>
+    <text x="1055" y="168" text-anchor="middle" font-size="13" fill="#5b6675">agreement · RMS drift</text>
+    <text x="1055" y="190" text-anchor="middle" font-size="13" fill="#5b6675">token entropy · latency tails</text>
+    <text x="1055" y="212" text-anchor="middle" font-size="13" fill="#5b6675">100 ms deadline misses</text>
+  </g>
+
+  <g stroke="#4f6f9f" stroke-width="3" fill="none" marker-end="url(#arrow)">
+    <path d="M237 174 H263"/>
+    <path d="M462 174 H488"/>
+    <path d="M707 174 H733"/>
+    <path d="M922 174 H948"/>
+  </g>
+
+  <rect x="45" y="280" width="1110" height="46" rx="12" fill="#fff4df" stroke="#d6a13d"/>
+  <circle cx="72" cy="303" r="7" fill="#c7861d"/>
+  <text x="92" y="308" font-family="Inter, ui-sans-serif, system-ui" font-size="14" font-weight="600" fill="#714b0c">Design diagram — no checkpoint result is encoded in this figure.</text>
+</svg>
+
