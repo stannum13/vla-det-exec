@@ -35,4 +35,3 @@
     <text x="600" y="410" text-anchor="middle" font-size="13" font-weight="650" fill="#714b0c">Same stored inputs · 100 calls per condition · 100 ms policy deadline · latency reported for every row</text>
   </g>
 </svg>
-
